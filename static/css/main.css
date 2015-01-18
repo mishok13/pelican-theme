@@ -1,4 +1,17 @@
 body {
     background-color: #E0E0E0;
+    color: #000;
     font-size: 14px;
+    font-family Cambria, Georgia, sans-serif;
+    text-align: center;
+    width: 800px;
+}
+
+a {
+    color: #333;
+}
+
+a:visited {
+    color: #333;
+    background-color: black;
 }
