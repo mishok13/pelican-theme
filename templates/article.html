@@ -1,48 +1,43 @@
 {% extends "base.html" %}
-{% block head %}
-  {{ super() }}
-  {% for keyword in article.keywords %}
-    <meta name="keywords" contents="{{keyword}}" />
-  {% endfor %}
-
-  {% for description in article.description %}
-    <meta name="description" contents="{{description}}" />
-  {% endfor %}
-
-  {% for tag in article.tags %}
-    <meta name="tags" contents="{{tag}}" />
-  {% endfor %}
-
+{% block title %}
+{{article.title|striptags}}
 {% endblock %}
-
+{% block head %}
+{{ super() }}
+{% for keyword in article.keywords %}
+<meta name="keywords" contents="{{keyword}}" />
+{% endfor %}
+{% for description in article.description %}
+<meta name="description" contents="{{description}}" />
+{% endfor %}
+{% endblock %}
 {% block content %}
-<section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
- {% import 'translations.html' as translations with context %}
- {{ translations.translations_for(article) }}
-  </header>
-  <footer class="post-info">
-    <abbr class="published" title="{{ article.date.isoformat() }}">
-      {{ article.locale_date }}
-    </abbr>
-	{% if article.modified %}
-    <abbr class="modified" title="{{ article.modified.isoformat() }}">
-      {{ article.locale_modified }}
-    </abbr>
-	{% endif %}
-    {% if article.authors %}
-    <address class="vcard author">
-      By {% for author in article.authors %}
-          <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-        {% endfor %}
-    </address>
-    {% endif %}
-  </footer><!-- /.post-info -->
-  <div class="entry-content">
-    {{ article.content }}
-  </div><!-- /.entry-content -->
-</section>
+<div id="article" class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <header>
+        <div class="row">
+          <h2 class="article-title">
+            <a href="{{SITEURL}}/{{article.url}}">{{article.title}}</a>
+          </h2>
+        </div>
+      </header>
+      <footer>
+        <div class="row">
+          Published on <abbr class="article-date" title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
+        </div>
+        {% if article.modified %}
+        <div class="row">
+          Last updated on <abbr class="article-modified" title="{{article.modified.isoformat()}}">{{article.locale_modified}}</abbr>
+        </div>
+        {% endif %}
+      </footer>
+      <div class="row article-content">
+        {{article.content}}
+      </div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
 {% endblock %}

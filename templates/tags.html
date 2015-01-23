@@ -3,8 +3,24 @@
 {% block title %}{{ SITENAME }} - Tags{% endblock %}
 
 {% block content %}
-    <h1>Tags for {{ SITENAME }}</h1>
-    {%- for tag, articles in tags|sort %}
-        <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
-    {% endfor %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <header>
+        <div class="row">
+          <h3>All the tags ever used:</h3>
+        </div>
+      </header>
+      <footer>
+        <div class="row">
+          {%- for tag, articles in tags|sort %}
+          <li><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})</li>
+          {% endfor %}
+        </div>
+      </footer>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
 {% endblock %}

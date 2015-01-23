@@ -1,26 +1,42 @@
 {% extends "base.html" %}
 {% block content %}
-<section id="content">
-{% block content_title %}
-<h2>All articles</h2>
+{% if articles %}
+<div id="articles" class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>{% block articles_title %}Recently published articles{% endblock %}</h3>
+      {% for article in articles_page.object_list %}
+      <div class="row article">
+        <div class="col-md-12">
+          <h2 class="article-title"><a href="{{SITEURL}}/{{article.url}}">{{article.title}}</a></h2>
+          <p class="article-subtitle">{{article.summary}}</p>
+          <div class="row">
+            <div class="col-md-2">
+              <p class="article-date">
+                <abbr title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
+              </p>
+            </div>
+            <div class="col-md-2">Link to comments</div>
+            <div class="col-md-2">
+              {% if article.tags %}
+              <p>tags:
+                {% for tag in article.tags %}
+                <a href="{{SITEURL}}/{{tag.url}}">{{ tag | escape }}</a>
+                {% endfor %}
+              </p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% block articles_footer %}
+      <p><a href="archives">Older entries</a></p>
+      {% endblock %}
+    </div>
+  </div>
+</div>
+{% endif %}
+{% block archives %}
 {% endblock %}
-
-<ol id="post-list">
-{% for article in articles_page.object_list %}
-        <li><article class="hentry">
-                <header> <h2 class="entry-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2> </header>
-                <footer class="post-info">
-                    <abbr class="published" title="{{ article.date.isoformat() }}"> {{ article.locale_date }} </abbr>
-                    <address class="vcard author">By
-                    {% for author in article.authors %}
-                        <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-                    {% endfor %}
-                    </address>
-                </footer><!-- /.post-info -->
-                <div class="entry-content"> {{ article.summary }} </div><!-- /.entry-content -->
-        </article></li>
-{% endfor %}
-</ol><!-- /#posts-list -->
-{% include 'pagination.html' %}
-</section><!-- /#content -->
-{% endblock content %}
+{% endblock %}
