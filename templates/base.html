@@ -16,10 +16,16 @@
     {% block header %}
     <div id="header" class="container">
       <div id="title" class="row">
-        <h1><a href="{{SITEURL}}">{{ SITENAME }}</a></h1>
-      </div>
-      <div id="subtitle" class="row">
-        <p>{{SITESUBTITLE}}</p>
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="siteheader">
+          <h2 id="sitename">
+            <a href="{{SITEURL}}">{{ SITENAME }}</a>
+          </h2>
+          <h4 id="sitesubtitle">{{SITESUBTITLE}}</h4>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
       </div>
     </div>
     {% endblock %}
@@ -27,5 +33,6 @@
     {% block footer %}
     <div id="footer" class="container"></div>
     {% endblock %}
+    {% include 'disqus_counts.html' %}
   </body>
 </html>

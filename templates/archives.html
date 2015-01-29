@@ -3,21 +3,25 @@
 {% if articles %}
 <div id="articles-archive" class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
       <h3>{% block archive_title %}All articles{% endblock %}</h3>
       {% for article in dates %}
       <div class="row">
         <!-- <div class="col-md-2"></div> -->
-        <div class="col-md-2">
-          <abbr title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
-        </div>
         <div class="col-md-8">
           <a href="{{SITEURL}}/{{article.url}}">{{article.title}}</a>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-4">
+          <div class="article-published">
+            <abbr title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
+          </div>
+        </div>
+        <!-- <div class="col-md-2"></div> -->
       </div>
       {% endfor %}
     </div>
+    <div class="col-md-2"></div>
   </div>
 </div>
 {% endif %}

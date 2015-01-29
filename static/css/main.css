@@ -1,14 +1,26 @@
 body {
-    /* background-color: #E0E0E0; */
-    /* color: #000; */
-    font-size: 16px;
-    /* font-family: Trebuchet, Myriad, Helvetica, 'Berlin Sans', sans-serif; */
+    background-color: #d0d0d0;
+    color: #000;
+    font-size: 18px;
+    font-family: Trebuchet, Myriad, Helvetica, 'Berlin Sans', sans-serif;
     /* text-align: left; */
 }
 
-/* #index { */
-/*     width: 800px; */
-/* } */
+a, a:hover, a:visited {
+                color: #28009e;
+            }
+
+.container {
+    background-color: #f0f0f0;
+}
+
+.article-published, .article-modified, .tags, .comments-overall {
+    font-size: 0.75em;
+}
+
+.article-published, .article-modified {
+    font-style: italic;
+}
 
 #content {
     /* padding: 20px 20px; */
@@ -22,4 +34,20 @@ a {
 a:visited {
     /* color: #333; */
     /* background-color: black; */
+}
+
+#articles-older-entries {
+    margin-top: 1em;
+}
+
+#sitename {
+    font-family: 'Andale Mono', AndaleMono, Consolas, monospace;
+}
+
+.siteheader {
+    text-align: right;
+}
+
+#sitesubtitle {
+    font-style: italic;
 }

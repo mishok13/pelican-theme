@@ -3,7 +3,8 @@
 {% if articles %}
 <div id="articles" class="container">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
       <h3>{% block articles_title %}Recently published articles{% endblock %}</h3>
       {% for article in articles_page.object_list %}
       <div class="row article">
@@ -11,13 +12,15 @@
           <h2 class="article-title"><a href="{{SITEURL}}/{{article.url}}">{{article.title}}</a></h2>
           <p class="article-subtitle">{{article.summary}}</p>
           <div class="row">
-            <div class="col-md-2">
-              <p class="article-date">
-                <abbr title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
-              </p>
+            <div class="article-published col-md-3">
+              <abbr title="{{article.date.isoformat()}}">{{article.locale_date}}</abbr>
             </div>
-            <div class="col-md-2">Link to comments</div>
-            <div class="col-md-2">
+            {% if DISQUS_SITENAME %}
+            <div class="comments-overall col-md-3">
+              <p><a href="{{SITEURL}}/{{article.url}}#disqus_thread"></a></p>
+            </div>
+            {% endif %}
+            <div class="tags col-md-3">
               {% if article.tags %}
               <p>tags:
                 {% for tag in article.tags %}
@@ -31,7 +34,8 @@
       </div>
       {% endfor %}
       {% block articles_footer %}
-      <p><a href="archives">Older entries</a></p>
+      <div id="articles-older-entries"><p><a href="archives">Older entries</a></p></div>
+      </div>
       {% endblock %}
     </div>
   </div>
